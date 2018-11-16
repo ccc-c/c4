@@ -332,7 +332,7 @@ void stmt() // 陳述 statement
 int main(int argc, char **argv) // 主程式
 {
   int fd, bt, ty, poolsz, *idmain;
-  int *pc, *sp, *bp, a, cycle; // vm registers 虛擬機暫存器
+  int *pc, *sp, *bp, a, cycle; // vm registers 虛擬機暫存器, pc: 程式計數器, sp: 堆疊暫存器, bp 為框架暫存器, a: 累積器, cycle: 執行指令數
   int i, *t; // temps
 
   --argc; ++argv;
@@ -520,7 +520,7 @@ int main(int argc, char **argv) // 主程式
     else if (i == MALC) a = (int)malloc(*sp); // 分配記憶體
     else if (i == FREE) free((void *)*sp); // 釋放記憶體
     else if (i == MSET) a = (int)memset((char *)sp[2], sp[1], *sp); // 設定記憶體
-    else if (i == MCMP) a = memcmp((char *)sp[2], (char *)sp[1], *sp); // 複製記憶體
+    else if (i == MCMP) a = memcmp((char *)sp[2], (char *)sp[1], *sp); // 比較記憶體
     else if (i == EXIT) { printf("exit(%d) cycle = %d\n", *sp, cycle); return *sp; } // EXIT 離開
     else { printf("unknown instruction = %d! cycle = %d\n", i, cycle); return -1; } // 錯誤處理
   }
