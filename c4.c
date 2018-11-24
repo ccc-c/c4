@@ -213,7 +213,7 @@ void expr(int lev) // 運算式 expression
     *++e = (ty == CHAR) ? SC : SI;
   }
   else { printf("%d: bad expression\n", line); exit(-1); }
-
+  // 參考: https://en.wikipedia.org/wiki/Operator-precedence_parser, https://www.cnblogs.com/rubylouvre/archive/2012/09/08/2657682.html https://web.archive.org/web/20151223215421/http://hall.org.ua/halls/wizzard/pdf/Vaughan.Pratt.TDOP.pdf
   while (tk >= lev) { // "precedence climbing" or "Top Down Operator Precedence" method
     t = ty;
     if (tk == Assign) {
